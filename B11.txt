@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vremenska prognoza</title>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="java/js.js"></script>
+</head>
+<body>
+   
+
+ <h1>Turistička agencija "Planinar"</h1>
+
+ <ul>
+    <li class="active"><a  href="Pocetna.html">Pocetna</a></li>
+    <li><a href="O autoru.html">O autoru</a></li>
+    <li><a href="Uputstvo.html">Uputstvo</a></li>
+  </ul>
+ 
+<div class="belo">
+  <div class="centar">
+  <form action="">
+      <label for="grad" style="font-size: 15px;">Izaberi grad: </label>
+      <select name="" id="grad" onchange="vr()">
+    <option value="Beograd">Beograd</option>
+    <option value="Jagodina">Jagodina</option>
+    <option value="Cacak">Cacak</option>
+    <option value="Sombor">Sombor</option>
+    <option value="Kikinda">Kikinda</option>
+    <option value="Novi Sad">Novi Sad</option>
+    <option value="Nis">Nis</option>
+    <option value="Cuprija">Cuprija</option>
+    <option value="Leskovac">Leskovac</option>
+    <option value="Valjevo">Valjevo</option>
+    <option value="Kraljevo"  >Kraljevo</option>
+    </select>
+  </form>
+</div>
+<div class="centar2">
+<iframe id="frame" src="https://naslovi.net/vremenska-prognoza/beograd" frameborder="1px solid black" width="500px" height="600px"></iframe>
+</div>
+</div>
+
+<h2>@ Turisticka agencija "Planinar"</h2>
+</body>
+</html>
+css
+body{
+    background-image: url('../slike/nebo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+h1,h2{
+    text-align: center;
+    color:orange;
+    font-family: 'Times New Roman', Times, serif;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    justify-content: center;
+    display: flex;
+
+
+  }
+  
+  li {
+    float: left;
+  background-color: white;
+    border-right: 1px solid #db761d;
+
+    width: 180px;
+    text-align: center;
+  }
+  li:last-child {
+    border-right: none;
+  }
+  
+  li a {
+    display: block;
+ 
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+    
+}
+  
+  li a:hover:not(.active) {
+    background-color: #db761d;
+    color: blue;
+  }
+  
+  .active {
+    background-color: #db761d;
+    color: white;
+  }
+  .centar{
+      justify-content: center;
+      display: flex;
+      margin-top: 20px;
+
+  }
+  .centar2{
+      justify-content: center;
+      display: flex;
+    
+  }
+  .belo{
+    background-color: azure;
+    opacity: 0.8;
+    justify-content: center;
+    width: 660px;
+    height: 760px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  iframe{
+    margin-top: 20px;
+  }
+java
+function vr()
+{
+    var x=document.getElementById("grad");
+    var v=x.value;
+    if(v=="Beograd")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/beograd";
+        window.open(
+            "gradovi/Beograd.html", "_blank","width=250,height=250");
+    }
+    if(v=="Jagodina")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/jagodina";
+        window.open(
+            "gradovi/Jagodina.html", "_blank","width=200,height=200");
+    }
+    if(v=="Cacak")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/cacak";
+        window.open(
+            "gradovi/Cacak.html", "_blank","width=200,height=200");
+    }
+    if(v=="Sombor")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/sombor";
+        window.open(
+            "gradovi/Sombor.html", "_blank","width=200,height=200");
+    }
+    if(v=="Kikinda")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/kikinda";
+        window.open(
+            "gradovi/Kikinda.html", "_blank","width=200,height=200");
+    }
+    if(v=="Novi Sad")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/novi-sad";
+        window.open(
+            "gradovi/NoviSad.html", "_blank","width=200,height=200");
+    }
+    if(v=="Nis")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/nis";
+        window.open(
+            "gradovi/Nis.html", "_blank","width=200,height=200");
+    }
+    if(v=="Cuprija")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/cuprija";
+        window.open(
+            "gradovi/Cuprija.html", "_blank","width=200,height=200");
+    }
+    if(v=="Leskovac")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/leskovac";
+        window.open(
+            "gradovi/Leskovac.html", "_blank","width=200,height=200");
+    }
+    if(v=="Valjevo")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/valjevo";
+        window.open(
+            "gradovi/Valjevo.html", "_blank","width=200,height=200");
+    }
+    if(v=="Kraljevo")
+    {
+        document.getElementById('frame').src="https://naslovi.net/vremenska-prognoza/kraljevo";
+        window.open(
+            "gradovi/Kraljevo.html", "_blank","width=200,height=200");
+    }
+}

@@ -1,0 +1,332 @@
+CSS:
+
+* {
+  margin: auto;
+}
+
+body {
+  background-color:white;
+}
+h1{
+color: black;
+text-align: center;
+margin-top: 20px;
+margin-bottom: 20px;
+font-family: sans-serif;
+}
+
+
+
+.oautoru {
+    font-size: xx-large;
+}
+
+label {
+  color:black;
+}
+table{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+table, tr, td {
+
+ border: 1px solid black;
+ color: black;
+ border-collapse: collapse;
+}
+
+td {
+padding: 15px;
+}
+
+th {
+border: 1px solid black;
+border-collapse: collapse;
+padding: 15px;
+background-color: rgb(224, 224, 224);
+}
+
+th a {
+ text-decoration: underline;
+ color: purple;
+}
+
+
+hr{
+clear: both;
+margin-bottom: 0px;
+border: 0;
+height: 6px;
+background-image: linear-gradient(to right, white, transparent, white), linear-gradient(transparent, rgba(0,0,0,0.55) 150%);    
+background-image: -moz-linear-gradient(to right, white, transparent, white), -webkit-linear-gradient(transparent, rgba(0,0,0,0.55) 150%);
+background-image: -ms-linear-gradient(to right, white, transparent, white), -webkit-linear-gradient(transparent, rgba(0,0,0,0.55) 150%);
+margin-left: 100px;
+margin-right: 100px;
+}
+.footer{
+background-color: #264c73;
+color: rgb(255, 255, 255);
+height: 50px;
+width: 100%;
+position: fixed;
+bottom: 0;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 20px;
+padding-bottom: 20px;
+
+
+}
+.vl{
+background-color: white;
+height: 58px;
+width: 1px;
+position: absolute;
+}
+
+
+
+#header {
+background-color: #264c73;
+color: rgb(255, 255, 255);
+width: 100%;
+}
+
+
+
+
+
+#header div{
+display: inline-block;
+}
+
+#header .text {
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 20px;
+padding-bottom: 20px;
+width: fit-content;
+margin: 0px;
+font-size: large;
+}
+.footer div{
+display: inline-block;
+}
+
+.footer .text {
+
+width: fit-content;
+margin: 0px;
+font-size: large;
+}
+.footer a{
+ margin-right: 40px;
+ float: right;
+ color: white;
+ font-size: large;
+
+}
+ .sivo {
+  border: 1px solid rgb(51, 51, 51);
+  color: rgb(51, 51, 51);
+  background-color: grey;
+ }
+
+ .sivo a {
+  color: rgb(51, 51, 51);
+ }
+
+ .pao {
+  color: black;
+  border: 1px solid black;
+  background-color: red;
+ }
+
+ .polozio {
+  background-color: green;
+  border: 1px solid black;
+  color: black;
+ }
+
+ #opcije {
+   display: flex;
+
+ }
+
+
+
+JS:
+function Sortiraj(){
+	var celije = document.getElementsByTagName('td');
+  	for(var i=4;i<celije.length-5;i+=5){
+    	for(var j=i+5;j<celije.length;j+=5){ 
+     		var p1=parseInt(celije[i].innerText);
+     		var p2=parseInt(celije[j].innerText);
+			if(p1<p2){
+				for(var z=0;z<5;z++){
+					p1=celije[i-z].innerText;
+					p2=celije[j-z].innerText;
+					celije[i-z].innerText=p2;
+					celije[j-z].innerText=p1;
+				}
+			}
+    	} 
+	}
+}
+/*function Oboji() {
+	var redovi = document.getElementsByTagName('tr');
+	var celije = document.getElementsByTagName('td');
+	var rbr = document.getElementsByTagName('th');
+	for (var i=0; i<redovi.length; i++) {
+		if (i%2 == 0) {
+			redovi[i].classList.toggle('sivo');
+		}
+	}
+
+	for(var i=0;i<rbr.length;i++){
+		rbr[i].classList.toggle('sivo');
+	}
+
+	for(var i=0;i<celije.length;i++){
+		if(i%10>=5){
+			celije[i].classList.toggle('sivo');
+		}
+	}
+}*/
+
+
+function Oboji() {
+	var redovi = document.getElementsByTagName('tr');
+	var celije = document.getElementsByTagName('td');
+	for (var i=0; i<3; i++) {
+		if (i%2 == 1) {
+			redovi[i].classList.toggle('sivo');
+		}
+	}
+	for(var i=0;i<celije.length;i++){
+		if(i%10<5){
+			celije[i].classList.toggle('sivo');
+		}
+	}
+}
+
+
+
+function Polozio() {
+	var redovi = document.getElementsByTagName('tr');
+	var celije = document.getElementsByTagName('td');
+	for (var i=0; i<celije.length; i++) {
+		if (i%5 == 4){
+			var x = parseInt(celije[i].innerText);
+			if(x>50){
+				for(var j=i-4;j<i+1;j++){
+					celije[j].classList.toggle('polozio');
+				}
+				redovi[Math.floor(i/5)+1].classList.toggle('polozio');
+			}
+		}
+	}
+}
+
+function Pao() {
+	var redovi = document.getElementsByTagName('tr');
+	var celije = document.getElementsByTagName('td');
+	for (var i=0; i<celije.length; i++) {
+		if (i%5 == 4){
+			var x = parseInt(celije[i].innerText);
+			if(x<50){
+				for(var j=i-4;j<i+1;j++){
+					celije[j].classList.toggle('pao');
+				}
+				redovi[Math.floor(i/5)+1].classList.toggle('pao');
+			}
+		}
+	}
+}
+function Izdvoji() {
+	var redovi = document.getElementsByTagName('tr');
+	var celije = document.getElementsByTagName('td');
+	for (var i=0; i<celije.length; i++) {
+		if (i%5 == 4){
+			var x = parseInt(celije[i].innerText);
+			if(x<50){for(var j=i-4;j<i+1;j++){
+				redovi[Math.floor(i/5)+1].innerHTML="";	
+				Sortiraj();
+				break;}
+			}
+		}
+	}
+}
+
+INDEX: 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pocetna</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script type="text/javascript" src="js/scripts.js"></script>
+</head>
+<body>
+    <div id="header">
+        <div class="text">Zadatak 22</div><div class="vl"></div><div class="text">Efekti tabele</div>
+     </div>
+     <h1>EFEKTI TABELE</h1>
+     <hr>
+    <table id="Tabela">
+        <tr>
+        <th>Rbr</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Škola</th>
+        <th>Poeni</th>
+        </tr>
+        <tr>
+        <td>1.</td>
+        <td>Pera</td>
+        <td>Mikić</td>
+        <td>OŠ “Vuk Karadžić”</td>
+        <td>54</td>
+        </tr>
+        <tr>
+        <td>2.</td>
+        <td>Mika</td>
+        <td>Zikić</td>
+        <td>OŠ “Ivo Andrić”</td>
+        <td>20</td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>Milan</td>
+            <td>Marković</td>
+            <td>OŠ “Mika Antić”</td>
+            <td>73</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Ivan</td>
+                <td>Tošić</td>
+                <td>OŠ “Bubanjski heroji”</td>
+                <td>21</td>
+                </tr>
+                <tr>
+                    <td>5.</td>
+                    <td>Jelena</td>
+                    <td>Perić</td>
+                    <td>OŠ “Milan Milutinović”</td>
+                    <td>68</td>
+                    </tr>
+    </table>
+    <hr>
+    <ul id="opcije">
+        <button type="button" onclick="Sortiraj();">Sortiraj</button>
+        <button type="button" onclick="Oboji();">Oboji neparne</button>
+        <button type="button" onclick="Polozio();">Položili</button>
+        <button type="button" onclick="Pao();">Nisu položili</button>
+        <button type="button" onclick="Izdvoji();" >Izdvoji one koji su položili</button>
+    </ul>
+    <div class="footer"><div class="text">Elektrotehnička škola "Nikola Tesla" Jagodina </div><span ><a href="oautoru.html">O autoru</a></span><span><a href="uputstvo.html">Uputstvo</a></span> </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Data.SqlClient;
+using System.Web.UI.WebControls;
+using System.Data;
+
+namespace B6
+{
+    public partial class Pocetna : System.Web.UI.Page
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.81.73.2,49166;Initial Catalog=Nadja_Jaksic_E34_W;User ID=Nadja_Jaksic_E34;Password=Nadja_Jaksic_E34");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            SqlCommand com = new SqlCommand("SELECT * FROM Skola", conn);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            gwSkola.DataSource = dt;
+            gwSkola.DataBind();
+        }
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace B6
+{
+    public partial class Grafik : System.Web.UI.Page
+    {
+        SqlConnection conn = new SqlConnection("Data Source=10.81.73.2,49166;Initial Catalog=Nadja_Jaksic_E34_W;User ID=Nadja_Jaksic_E34;Password=Nadja_Jaksic_E34");
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            SqlCommand com = new SqlCommand("SELECT Razred, ProsecnaOcena FROM Skola", conn);
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            Chart1.DataSource = dt;
+            Chart1.Series[0].XValueMember = "Razred";
+            Chart1.Series[0].YValueMembers = "ProsecnaOcena";
+            Chart1.Series[0].XValueType = System.Web.UI.DataVisualization.Charting.ChartValueType.Int32;
+            Chart1.Series[0].YValueType = System.Web.UI.DataVisualization.Charting.ChartValueType.Int32;
+            Chart1.Series[0].IsValueShownAsLabel = true;
+        }
+    }
+}

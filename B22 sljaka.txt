@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B22</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="skripta/js.js"></script>
+</head>
+<body>
+    <header>
+        <ul>
+            <li class="prvi">B22</li>
+            <li class="drugi">Efekti tabele</li>
+        </ul>
+    </header>
+    <div class="naslov">
+        <h1>EFEKTI TABELE</h1>
+    </div>
+    <hr>
+    <div class="content">
+    <table id="Tabela">
+        <tr>
+        <th>Rbr</th>
+        <th>Ime</th>
+        <th>Prezime</th>
+        <th>Škola</th>
+        <th>Poeni</th>
+        </tr>
+        <tr>
+        <td>1.</td>
+        <td>Pera</td>
+        <td>Mikic</td>
+        <td>OŠ “Vuk Karadžić”</td>
+        <td>54</td>
+        </tr>
+        <tr>
+        <td>2.</td>
+        <td>Mika</td>
+        <td>Zikic</td>
+        <td>OŠ “Ivo Andrić”</td>
+        <td>42</td>
+        </tr>
+        <tr>
+        <td>3.</td>
+        <td>Milan</td>
+        <td>Markovic</td>
+        <td>OŠ “Mika Antic”</td>
+        <td>73</td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>Ivan</td>
+            <td>Tosic</td>
+            <td>OŠ “Bubanjski heroji”</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td>5.</td>
+            <td>Jelena</td>
+            <td>Peric</td>
+            <td>OŠ “Milan Milutinovic”</td>
+            <td>68</td>
+        </tr>
+    </table>
+    <hr>
+    <div class="buttons">
+        <button type="button" onclick="Sort()">Sortiraj</button>
+        <button type="button" onclick="Oboji()">Oboji neparne</button>
+        <button type="button" onclick="Polozio()">Polozili</button>
+        <button type="button" onclick="NisuPolozili()">Nisu polozili</button>
+        <button type="button" onclick="Izdvoji()">Izdvoji one koji su polozili</button>
+    </div>
+</div>
+    <footer>
+        <div class="donji">
+            <p>Elektrotehnicka skole "Nikola Tesla" Nis</p>
+            <div class="nav">
+                <ul>
+                    <li><a href="#">Pocetna</a></li>
+                    <li><a href="opis.html">O aplikaciji</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+CSS:
+header{
+    background-color: steelblue;
+}
+header ul{
+    list-style-type: none;
+    display: flex;
+}
+header ul li{
+    color: white;
+    padding: 25px 25px;
+    display: inline-block;
+    font-size: 25px;
+}
+.prvi{
+    border-right: 1px solid white;
+}
+.drugi{
+    border-left: 1px solid white;
+}
+footer{
+    background-color: steelblue;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+footer p{
+    font-size: 25px;
+    float: left;
+    color: white;
+    padding: 25px 25px;
+}
+.nav{
+    float: right;
+}
+.nav ul{
+    list-style-type: none;
+    display: flex;
+}
+.nav ul li{
+    padding: 25px 25px;
+    display: inline-block;
+}
+.nav ul li a{
+    font-size: 25px;
+    color: white;
+}
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: 42px;
+    display: inline-block;
+}
+.content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    margin: auto;
+    padding: 70px 0px;
+}
+table{
+    border-collapse: collapse;
+}
+table tr th{
+    background-color: gray;
+    font-weight: bold;
+    padding: 7px 7px;
+    border: 1px solid black;
+}
+table tr td{
+    padding: 7px 7px;
+    border: 1px solid black;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+.neparni{
+    background-color: lightslategray;
+}
+.polozio{
+    background-color: green;
+}
+.nisuPolozili{
+    background-color: red;
+}
+.izdvoji{
+    display: none;
+}
+.naslov{
+    text-align: center;
+}
+
+JS:
+function Sort() {
+    var table,rows,switching,i,x,y,shouldSwitch,dir,switchcount=0;
+    table=document.getElementById("Tabela");
+    switching=true;
+    dir = "desc";
+
+    while(switching){
+        switching=false;
+        rows=table.rows;
+        
+        for(i=1;i<rows.length-1;i++){
+            shouldSwitch=0;
+            //prvi i njegov sledbenik
+            x=rows[i].getElementsByTagName("td")[4];
+            y=rows[i+1].getElementsByTagName("td")[4];
+            if(dir="desc"){
+                if(x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()){
+                    shouldSwitch=true;
+                    break;
+                }
+            }
+        }
+        //menjanje mesta
+        if(shouldSwitch){
+            rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
+            switching=true;
+            switchcount++;
+        }
+    }
+}
+function Oboji() {
+    $("tr:odd").toggleClass("neparni");
+}
+function Polozio() {
+    var table = document.getElementById("Tabela");
+    var rows = table.rows;
+    var i = 0;
+    for(i = 1; i <= rows.length; i++){
+        var x = rows[i].getElementsByTagName("td")[4];
+        var y = rows[i];
+        if(x.innerHTML>50){
+            $(y).addClass("polozio");
+        }
+    }
+}
+function NisuPolozili() {
+    var table = document.getElementById("Tabela");
+    var rows = table.rows;
+    var i = 0;
+    for(i = 1; i <= rows.length; i++){
+        var x = rows[i].getElementsByTagName("td")[4];
+        var y = rows[i];
+        if(x.innerHTML<=50){
+            $(y).addClass("nisuPolozili");
+        }
+    }
+}
+function Izdvoji() {
+    var table,rows,switching,i,x,y,shouldSwitch,dir,switchcount=0;
+    table=document.getElementById("Tabela");
+    switching=true;
+    dir = "desc";
+
+    while(switching){
+        switching=false;
+        rows=table.rows;
+        
+        for(i=1;i<rows.length-1;i++){
+            shouldSwitch=0;
+            //prvi i njegov sledbenik
+            x=rows[i].getElementsByTagName("td")[4];
+            y=rows[i+1].getElementsByTagName("td")[4];
+            if(dir="desc"){
+                if(x.innerHTML.toLowerCase()<y.innerHTML.toLowerCase()){
+                    shouldSwitch=true;
+                    break;
+                }
+            }
+        }
+        //menjanje mesta
+        if(shouldSwitch){
+            rows[i].parentNode.insertBefore(rows[i+1],rows[i]);
+            switching=true;
+            switchcount++;
+        }
+    }
+
+    for(i = 1; i <= rows.length; i++){
+        var x = rows[i].getElementsByTagName("td")[4];
+        var y = rows[i];
+        if(x.innerHTML<=50){
+            $(y).addClass("izdvoji");
+        }
+    }
+}

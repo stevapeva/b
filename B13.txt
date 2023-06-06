@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.IO;
+namespace WebApplication2
+{
+    public partial class _Default : Page
+    {
+        DataTable table = new DataTable();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            table.Columns.Add("Rbr", typeof(int));
+            table.Columns.Add("Ime", typeof(string));
+            table.Columns.Add("Prezime", typeof(string));
+            table.Columns.Add("Adresa", typeof(string));
+            table.Columns.Add("Telefon", typeof(string));
+            table.Columns.Add("E-Mail", typeof(string));
+            table.Columns.Add("Mesto", typeof(string));
+            string putanja = Server.MapPath("~/text/Ljudi.txt");
+            string[] podaci = File.ReadAllLines(putanja);
+            foreach (string p in podaci)
+            {
+                string[] kolone = p.Split(';');
+                table.Rows.Add(kolone);
+            }
+            GridView1.DataSource = table;
+            GridView1.DataBind();
+            List<string> mesta = new List<string>();
+            foreach (string p in podaci)
+            {
+                string[] kolone = p.Split(';');
+                mesta.Add(kolone[6]);
+            }
+            DropDownList1.Items.Add(new ListItem(String.Empty, "-1"));
+            foreach (string m in mesta)
+            {
+                ListItem item = new ListItem(m);
+                if (!DropDownList1.Items.Contains(item))
+                {
+                    DropDownList1.Items.Add(item);
+                }
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            DataTable temp = table.Copy();
+            for (int i = 0; i < temp.Rows.Count; i++)
+            {
+                if (!temp.Rows[i][1].ToString().Contains(TextBox1.Text) ||
+                    !temp.Rows[i][2].ToString().Contains(TextBox2.Text) ||
+                    !temp.Rows[i][3].ToString().Contains(TextBox3.Text) ||
+                    !temp.Rows[i][4].ToString().Contains(TextBox4.Text) ||
+                    !temp.Rows[i][5].ToString().Contains(TextBox5.Text) ||
+                    !temp.Rows[i][6].ToString().Contains(DropDownList1.SelectedItem.Text))
+                {
+                    temp.Rows.RemoveAt(i);
+                    i--;
+                }
+            }
+            GridView1.DataSource = temp;
+            GridView1.DataBind();
+        }
+    }
+}
